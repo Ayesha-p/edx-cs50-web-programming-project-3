@@ -1,0 +1,92 @@
+<!--
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+-->
+
+{% extends "orders/base.html" %}
+
+{% load static %}
+
+{% block title %}
+PIZZA SHOP
+{% endblock %}
+
+{% block extraHead %}
+<link rel="stylesheet" href="{% static 'orders/CSS/shop.css' %}"/>
+<script src="{% static 'orders/javascript/shop.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="navbar-header">
+        <div class="navbar-brand">
+            <a href="{% url 'orders:index' %}" class="brand-title-custom">
+                PIZZA SHOP
+            </a>
+        </div>
+    </div>
+
+    <ul class="nav navbar-nav">
+        <li>
+            <div class="nav-text" id='greeting'>Hi! {{ username }}.</div>
+        </li>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+        <li>
+            <a href="{% url 'orders:logout' %}">
+                <button class="btn btn-danger">LOGOUT</button>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="info-bar">
+    <h1 style="float: left; margin-left: 1%;">SHOP's INTERFACE!</h1>
+
+    <span id="window-reload-informer" style="float: right; margin-right: 1%;">
+        <h4>This window will reload in : 
+        <span id="reload-timer"></span>
+        </h4>
+    </span>
+</div>
+
+<hr style="border:2px solid hotpink; z-index: 3;" >
+
+<div id="surface">
+
+    <span class="orders-list-container split-window">
+        <span id="order-id-selection-window">Order IDs:</span>
+        <ul id="orders-list">
+        </ul>
+    </span>
+
+    <span class="order-info split-window">
+        <span id="order-complete-btn-container"></span>
+
+        <br>
+        <br>
+
+        <h3>Order id : 
+            <span id="order-id">Select an order!</span>
+        </h3>
+        <h3>Order status : 
+            <span id="order-status">Select an order!</span>
+        </h3>
+        <h3>Order price : 
+            <span id="order-price">Select an order!</span>
+        </h3>
+
+        <span id="order-content-container">
+            <h3>Contents :</h3>
+            <ol id="order-content-list">
+                    Select an order!
+            </ol>
+        </span>
+    </span>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+<!--
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+-->
+
+{% extends "orders/base.html" %}
+
+{% load static %}
+
+{% block title %}
+PIZZA SHOP
+{% endblock %}
+
+{% block extraHead %}
+<link rel="stylesheet" href="{% static 'orders/CSS/profile.css' %}"/>
+<script src="{% static 'orders/javascript/profile.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="navbar-header">
+        <div class="navbar-brand">
+            <a href="{% url 'orders:index' %}" class="brand-title-custom">
+                PIZZA SHOP
+            </a>
+        </div>
+    </div>
+
+    <ul class="nav navbar-nav">
+        <li>
+            <div class="nav-text" id='greeting'>Hi! {{ username }}.</div>
+        </li>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+        <li>
+            <a href="{% url 'orders:logout' %}">
+                <button class="btn btn-danger" id="logout-btn">LOGOUT</button>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="surface" style="margin-left: 1%;">
+
+    <h1 style="color: rgb(251, 10, 131);">USER PROFILE</h1>
+
+    <div id="cart">
+        <h3 style="color: magenta;">YOUR CART ITEMS APPEAR HERE!</h3>
+        <h4 id="remove-item-message">Click on your cart items to remove them from the cart!</h4>
+        <ol id="cart-list">
+        </ol>
+        <button class="btn btn-danger" id="clear-cart">CLEAR CART!</button>
+    </div>
+
+    <br>
+    <br>
+
+    <div id="get-price">
+        <form id="form-get-price">
+            {% csrf_token %}
+            <input name="cart-items-get-price" value="" type="hidden" />
+            <button id="btn-get-price" class="btn btn-secondary" type="submit">GET PRICE FOR YOUR CURRENT ORDER!</button>
+        </form>
+
+        <br>
+
+        <p id="display-price">
+            Your current cart price is: 
+            <span id="display-price-value"></span>
+        </p>
+        <div id="price-warning">
+            <p>There might be some problems with your cart items!</p>
+            <p>It is recommended to clear your cart and start shopping again!</p>
+        </div>
+    </div>
+
+    <br>
+
+    <div id="place-order">
+        <form action="{% url 'orders:place-order' %}" method="POST" id="form-place-order">
+            {% csrf_token %}
+            <input name="cart-items-place-order" value="" type="hidden" />
+            <button id="btn-place-order" class="btn btn-primary" type="button">PLACE YOUR ORDER!</button>
+        </form>
+
+        <br>
+    </div>
+
+    <hr style="border: solid hotpink 0.5rem;">
+
+    <h2>Your latest orders appear hear:</h2>
+    <hr style="border: dashed cyan 0.1rem;">
+
+    {% if old_order %}
+        <div id="old-orders-container">
+            {% for i, j in previous_orders %}
+            <div class="old-orders">
+                <span>Order id: 
+                    <form action="{% url 'orders:review-order'%}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ i }}" name="order-id" />
+                        <button type="submit" class="order-btn">{{ i }}</button>
+                    </form>
+                </span>
+                <h4>Status: 
+                    <span class="order-status-{{ j }}">{{ j }}</span>
+                </h4>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <p id="no-old-orders">
+            No previous orders!
+        </p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

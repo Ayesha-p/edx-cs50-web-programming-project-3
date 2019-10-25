@@ -1,0 +1,78 @@
+<!--
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+-->
+
+{% extends "orders/base.html" %}
+
+{% load static %}
+
+{% block title %}
+SIGNUP
+{% endblock %}
+
+{% block extraHead %}
+<link rel="stylesheet" href="{% static 'orders/CSS/background.css' %}" />
+<link rel="stylesheet" href="{% static 'orders/CSS/signup.css' %}" />
+{% endblock %}
+
+{% block body %}
+
+{% if message %}
+<h1 class="message">{{ message }}</h1>
+{% endif %}
+
+<div class="signup">
+    <p class="signup-head">
+        CREATE A NEW ACCOUNT!
+    </p>
+    <br>
+    <br>
+
+    <form action="{% url 'orders:new-account' %}" method="POST">
+        {% csrf_token %}
+        <h2 class="form-input-head">USERNAME:</h2>
+        <input class="form-input" type="text" name="username" placeholder="ENTER USERNAME" required />
+        <br>
+        <br>
+        <hr class="form-item-break">
+
+        <h2 class="form-input-head">PASSWORD:</h2>
+        <input class="form-input" type="password" name="password" placeholder="ENTER PASSWORD" required />
+        <br>
+        <br>
+        <hr class="form-item-break">
+
+        <h2 class="form-input-head">EMAIL:</h2>
+        <input class="form-input" type="text" name="email" placeholder="ENTER EMAIL" required />
+        <br>
+        <br>
+        <hr class="form-item-break">
+
+        <h2 class="form-input-head">FIRST NAME:</h2>
+        <input class="form-input" type="text" name="first_name" placeholder="ENTER FIRST NAME" />
+        <br>
+        <br>
+        <hr class="form-item-break">
+
+        <h2 class="form-input-head">LAST NAME:</h2>
+        <input class="form-input" type="text" name="last_name" placeholder="ENTER LAST NAME" />
+        <br>
+        <br>
+        <hr class="form-item-break">
+
+        <br>
+        <br>
+
+        <div class="go-to-home">
+            <a href="{% url 'orders:index' %}">CANCEL and goto HomePage!</a>
+        </div>
+
+        <div class="form-submit">
+            <button class="form-submit-button" type="submit">CREATE ACCOUNT!</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

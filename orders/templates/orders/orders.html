@@ -1,0 +1,83 @@
+<!--
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+-->
+
+{% extends "orders/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Review order!
+{% endblock %}
+
+{% block extraHead %}
+<link rel="stylesheet" href="{% static 'orders/CSS/orders.css' %}"/>
+{% endblock %}
+
+{% block body %}
+
+{% if order_id_status %}
+<div id="order-id-container">
+    <span>Your order's ID is: 
+        <span id="order-id">{{ order_id }}</span>
+    </span>
+    <br>
+    <span>Please keep note of it for your reference!</span>
+</div>
+{% endif %}
+
+<br>
+
+{% if new_order %}
+    {% if order_status %}
+        <span class="middle-text">ORDER PLACED!</span>
+        <br>
+        <span class="middle-text">Your order's price is: 
+            <span id="price">{{ price }}</span>
+        </span>
+        <br>
+        <br>
+        <span class="middle-text">YOUR ORDER IS AS FOLLOWS:</span>
+        <span class="list-text">
+            <ol>
+                {% for item in cart %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </span>
+
+    {% else %}
+        <p class="place-order-error-text" style="color: dodgerblue">ORDER NOT PLACED!</p>
+        <p class="place-order-error-text" style="color: fuchsia">SOMETHING WENT WRONG!</p>
+        <p class="place-order-error-text" style="color: rgb(91, 38, 235);">Please check your cart items or clear your cart and try shopping again!</p>
+
+    {% endif %}
+
+{% else %}
+        <div id="order-status-container">
+            <p>Your order status: 
+                <span id="order-status">{{ order_status }}</span>
+            </p>
+        </div>
+        <span class="middle-text">Your order's price is: 
+            <span id="price">{{ price }}</span>
+        </span>
+        <br>
+        <br>
+        <span class="middle-text">Your order is as follows:</span>
+        <span class="list-text">
+            <ol>
+                {% for item in cart %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </span>
+{% endif %}
+
+<div class="go-to-profile">
+    <a href="{% url 'orders:profile' %}">Goto back to Profile!</a>
+</div>
+
+{% endblock %}

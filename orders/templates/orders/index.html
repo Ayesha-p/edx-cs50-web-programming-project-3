@@ -1,0 +1,190 @@
+<!--
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+-->
+
+{% extends "orders/base.html" %}
+
+{% load static %}
+
+{% block title %}
+PIZZA SHOP
+{% endblock %}
+
+{% block extraHead %}
+<link rel="stylesheet" href="{% static 'orders/CSS/index.css' %}"/>
+<script src="{% static 'orders/javascript/home.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="navbar-header">
+        <div class="navbar-brand">
+            <a href="{% url 'orders:index' %}" class="brand-title-custom">
+                PIZZA SHOP
+            </a>
+        </div>
+    </div>
+
+    {% if user_logged_in %}
+    <ul class="nav navbar-nav">
+        <li>
+            <div class="nav-text" id='greeting'>Hi! {{ username }}.</div>
+        </li>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+        <li class="mr-2">
+            <a href="{% url 'orders:profile' %}">
+                <button class="btn btn-dark">CART!</button>
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'orders:logout' %}">
+                <button class="btn btn-danger" id="logout-btn">LOGOUT</button>
+            </a>
+        </li>
+    </ul>
+
+    {% else %}
+
+    <ul class="nav navbar-nav ml-auto">
+        <li class="mr-2">
+            <a href="{% url 'orders:signup' %}">
+                <button class="btn btn-warning" id="sign-up">SIGNUP</button>
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'orders:login' %}">
+                <button class="btn btn-success" id="login">LOGIN</button>
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+
+</nav>
+
+<div id="surface">
+    <h1 style="margin-left: 5px;">Choose from our menu!</h1>
+
+    <hr style="border: 5px solid pink">
+
+    {% for item, section, section_data in menu %}
+    <div class="section_head"> {{ section }} </div>
+    <div class="sub_items">
+        <ul class="list-head">
+            {% if section in "Toppings, Pasta, Salads" %}
+                {% for sub_item in item %}
+                <div class="sub_item_list">
+                    <li>
+                        <span class="sub_item_name"> {{ sub_item }} </span>
+                        {% if user_logged_in %}
+                        <span class="add_to_cart btn-with-icon default-item" data-item="{{ section_data }}--{{ sub_item }}--default">
+                            <span class="add-to-cart-plus-sign-container">
+                                <svg class="svg-plus" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" stroke="black" stroke-width="10" fill="none"></circle>
+                                    <line x1="50" y1="20" x2="50" y2="80" stroke="black" stroke-width="10"></line>
+                                    <line x1="20" y1="50" x2="80" y2="50" stroke="black" stroke-width="10"></line>
+                                </svg>
+                            </span>
+                            <span class="add-item-btn-text">ADD ITEM</span>
+                        </span>
+
+                        {% else %}
+
+                        <div class="login_to_purchase" style="float: right;">
+                            LOGIN TO ADD TO CART!
+                        </div>
+                        {% endif %}
+                    </li>
+                </div>
+
+                <div style="margin-top: 10px;"></div>
+
+                {% endfor %}
+
+            {% else %}
+
+                {% for sub_item in item %}
+                <div class="sub_item_list">
+                    <li>
+                        <span class="sub_item_name"> {{ sub_item }} </span>
+                        {% if user_logged_in %}
+                        <div class="sub_item_2prices" style="float: right">
+                            <span class="add_to_cart btn-with-icon small-item" data-item="{{ section_data }}--{{ sub_item }}--small">
+                                <span class="add-to-cart-plus-sign-container">
+                                    <svg class="svg-plus" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="10" fill="none"></circle>
+                                        <line x1="50" y1="20" x2="50" y2="80" stroke="black" stroke-width="10"></line>
+                                        <line x1="20" y1="50" x2="80" y2="50" stroke="black" stroke-width="10"></line>
+                                    </svg>
+                                </span>
+                                <span class="add-item-btn-text">SMALL</span>
+                            </span>
+
+                            <span class="add_to_cart btn-with-icon large-item" data-item="{{ section_data }}--{{ sub_item }}--large">
+                                <span class="add-to-cart-plus-sign-container">
+                                    <svg class="svg-plus" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="10" fill="none"></circle>
+                                        <line x1="50" y1="20" x2="50" y2="80" stroke="black" stroke-width="10"></line>
+                                        <line x1="20" y1="50" x2="80" y2="50" stroke="black" stroke-width="10"></line>
+                                    </svg>
+                                </span>
+                                <span class="add-item-btn-text">LARGE</span>
+                            </span>
+                        </div>
+
+                        {% else %}
+
+                        <div class="login_to_purchase" style="float: right;">
+                            LOGIN TO ADD TO CART!
+                        </div>
+                        {% endif %}
+                    </li>
+                </div>
+
+                <div style="margin-top: 10px;"></div>
+
+                {% endfor %}
+
+            {% endif %}
+        </ul>
+    </div>
+    <hr>
+
+    {% endfor %}
+
+    <div class="menu_end_symbol">
+        <svg class="svg_cart">
+            <rect width='50px' height='20px' style="fill: rgb(0, 255, 128); stroke-width:10; stroke:rgb(47, 0, 255);"/>
+        </svg>
+    </div>
+    <br>
+    <div class="menu_end">
+        END OF MENU
+    </div>
+
+    <hr style="border: 5px solid pink">
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="footer">
+    <p>This website is created by <span id="creator">OM SANTOSHKUMAR MASNE</span>.</p>
+    <p>This is a project website for edX's course "Web programming with python and javascript".</p>
+    <p>This is an web-app for an online PIZZA SHOP.</p>
+</div>
+
+{% endblock %}

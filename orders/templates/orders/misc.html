@@ -1,0 +1,55 @@
+<!--
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+-->
+
+{% extends "orders/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Information Page!
+{% endblock %}
+
+{% block extraHead %}
+<link rel="stylesheet" href="{% static 'orders/CSS/background.css' %}" />
+<link rel="stylesheet" href="{% static 'orders/CSS/misc.css' %}" />
+{% endblock %}
+
+{% block body %}
+<div class="surface">
+    <h1>{{ from }}</h1>
+
+    {% if message %}
+    <h2>{{ message }}</h2>
+    {% endif %}
+
+    <ul>
+        {% if info %}
+            {% for item in info %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <div class="go-to-home">
+        <a href="{% url 'orders:index' %}">Goto HomePage!</a>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<script type="text/javascript">
+    var cart_items_local_storage = localStorage.getItem('cart_items');
+    if(cart_items_local_storage)
+    {
+        console.log("Clearing cart!");
+        localStorage.setItem("cart_items", '');
+    }
+</script>
+
+{% endblock %}

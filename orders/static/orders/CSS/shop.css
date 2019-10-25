@@ -1,0 +1,156 @@
+/*
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+*/
+
+@keyframes highlighter
+{
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#greeting
+{
+    color: cyan;
+    font-size: 2rem;
+}
+
+.html,body
+{
+    height:100%;
+}
+
+.brand-title-custom
+{
+    color: white;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.brand-title-custom:hover
+{
+    color: white;
+}
+
+#info-bar
+{
+    width: 100%;
+    height: 60px;
+}
+
+#surface
+{
+    box-sizing: border-box;
+    width: 100%;
+    height: 600px;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.split-window
+{
+    border: 2px solid rgb(57, 182, 255);
+    box-sizing: border-box;
+    height: inherit;
+    position: absolute;
+    z-index: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.order
+{
+    display: flex;
+    box-shadow: 2px hotpink;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 40px;
+    background-color: aquamarine;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    border-radius: 8px;
+}
+
+.order:hover
+{
+    cursor: pointer;
+    animation: highlighter 1s infinite forwards;
+}
+
+#orders-list
+{
+    padding-left: 0;
+}
+
+.orders-list-container
+{
+    width: 40%;
+    left: 0;
+    background-color: rgb(255, 250, 185);
+}
+
+.order-info
+{
+    width: 60%;
+    right: 0;
+    background-color: rgb(212, 255, 222);
+}
+
+#order-id-selection-window
+{
+    font-size: 2rem;
+    color: fuchsia;
+}
+
+#order-id
+{
+    font-size: 2rem;
+    color: fuchsia;
+}
+
+#order-status
+{
+    color: rgb(91, 38, 235);
+}
+
+#order-price
+{
+    color: dodgerblue;
+}
+
+.order-content-container
+{
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.order-content-list
+{
+    font-size: 1.5rem;
+    font-weight: 300;
+    list-style-position: inside;
+}
+
+@media (max-width:800px)
+{
+    #info-bar
+    {
+        height: 70px;
+    }
+}

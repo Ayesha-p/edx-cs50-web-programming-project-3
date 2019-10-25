@@ -1,0 +1,211 @@
+/*
+    Copyright (C) 2019 OM SANTOSHKUMAR MASNE. All Rights Reserved.
+    Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) license.
+    See License.txt in the project root for license information.
+*/
+
+@keyframes highlighter
+{
+    0% {
+        transform: rotate(0deg);
+    }
+    33% {
+        transform: rotate(15deg) scale(1.2);
+    }
+    66% {
+        transform: rotate(-15deg) scale(1.4);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotate
+{
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#creator 
+{
+    color: #11ff88;
+    font-weight: bold;
+}
+
+.footer
+{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: grey;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#greeting
+{
+    color: cyan;
+    font-size: 2rem;
+}
+
+.brand-title-custom
+{
+    color: white;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.brand-title-custom:hover
+{
+    color: white;
+}
+
+.sub_item_name
+{
+    color: rgb(0, 98, 255);
+    float: left;
+}
+
+.svg-plus
+{
+    width:20px;;
+    height:20px;
+    margin-right: 1px;
+}
+
+.btn-with-icon
+{
+    border:2px solid rgb(0, 204, 255);
+    border-radius: 5px;
+    background:transparent;
+    z-index: 100;
+    width: 70px;
+    height: 25px;
+    padding: 1px;
+}
+
+.btn-with-icon:hover
+{
+    border:4px solid rgb(0, 183, 255);
+    background:transparent;
+    z-index: 100;
+    height: 30px;
+    position: relative;
+    animation: highlighter 2s infinite forwards;
+}
+
+.add-to-cart-plus-sign-container
+{
+    pointer-events: none;
+    border: none;
+}
+
+.add-item-btn-text
+{
+    font-weight: 600;
+    pointer-events: none;
+    font-size: 12px;
+    display: inline;
+    position: absolute;
+}
+
+.default-item
+{
+    width: 90px;
+}
+
+.large-item
+{
+    margin-right: 20px;
+}
+
+
+.section_head
+{
+    color: rgb(0, 255, 13);
+    font-size: 2rem;
+    box-sizing: border-box;
+    width: 80%;
+    margin: auto;
+    padding: 0;
+}
+
+.sub_items
+{
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    width: 60%;
+    margin: auto;
+    padding: 0;
+}
+
+.add_to_cart
+{
+    float: right;
+}
+
+.added_to_cart
+{
+    position: relative;
+    float: right;
+    pointer-events: none;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.menu_end
+{
+    font-size: 2rem;
+    color: gold;
+    text-align: center;
+}
+
+.menu_end_symbol
+{
+    position: relative;
+    animation: rotate 1s infinite forwards;
+    width: 50px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sub_item_list
+{
+    box-sizing: border-box;
+}
+
+.svg_cart
+{
+    width: 50px;
+    height: 20px;
+    pointer-events: none;
+}
+
+@media (max-width:800px)
+{
+    .section_head
+    {
+        width: 100%;
+    }
+
+    .sub_items
+    {
+        width: 100%;
+        padding-right: 5%;
+    }
+
+    .list-head
+    {
+        padding: 15px;
+    }
+}
