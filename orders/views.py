@@ -107,8 +107,11 @@ def new_account(request):
         user_custom = Custom_user(username = username)
         user_custom.save()
 
-        customer_group = Group.objects.get(name = "CUSTOMER")
+        customer_group, created = Group.objects.get_or_create(name = "CUSTOMER")
         user.groups.add(customer_group)
+
+        if created:
+            print('Created group: CUSTOMER.')
 
     # It now renders the account summary page.
     context = {'from':"NEW ACCOUNT CREATED!", 'info':info}
